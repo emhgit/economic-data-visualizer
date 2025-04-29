@@ -1,4 +1,2 @@
-//TODO: add functionality to buttons
-//create an api handler to get the data from the api
-//get chart.js 
-//(potentially) utils to handle the data
+//TODO: add functionality on form submit
+//(potentially) utils module to handle the data
