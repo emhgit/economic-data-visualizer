@@ -14,9 +14,47 @@
     <main>
         <div id="sidebar">
             <!-- Where user inputs form data -->
+            <h2>Side Bar</h2>
+            <form>
+                <!-- Country Data -->
+                <label for="countries">Select Countries</label>
+                <select id="countries" name="countries" multiple>
+                    <option value="USA">USA</option>
+                    <option value="Canada">Canada</option>
+                    <option value="Germany">Germany</option>
+                    <option value="UK">UK</option>
+                    <option value="China">China</option>
+                </select>
+                <br>
+
+                <!-- Indicator Type -->
+                <label for="indicators">Select Indicators</label>
+                <input list="indicators-list" id="indicators" name="indicators" placeholder="Select Indicators" required>
+                <datalist id="indicators-list">
+                    <option value="GDP">GDP</option>
+                    <option value="GDP Growth">GDP</option>
+                    <option value="Inflation">Inflation</option>
+                    <option value="Unemployment">Unemployment</option>
+                    <option value="Gross Government Debt">Trade Balance</option>
+                </datalist>
+                <br>
+
+                <!-- Time Range -->
+                <label for="time-range">Select Time Range</label>
+                <input type="date" id="start-date" name="start-date" min="1960-01-01" max="2025-01-01"required> To
+                <input type="date" id="end-date" name="end-date" min="1960-01-01" max="2025-01-01"required>
+                <br>
+                
+                <!-- Visualization Type -->
+                <label for="visualization-type">Select Visualization Type</label>
+                
+                <!-- TODO: FINISH HTML STRUCTURE  -->
+            </form>
         </div>
         <div id="display-area">
             <!-- Data visualization will be rendered here -->
+        <h2>Display Area</h2>
+
         </div>
     </main>
    
