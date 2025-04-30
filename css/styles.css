@@ -3,3 +3,11 @@ main {
     display: flex;
     height: 100vh;
 }
+
+.sidebar {
+    width: 50%;
+}
+
+.display-area {
+    width: 50%;
+}

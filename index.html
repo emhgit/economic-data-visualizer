@@ -48,7 +48,7 @@
                     <label for="start-date">Start Date</label>
                     <input type="range" id="start-date" name="start-date" min="1960" max="2024"required>
                     <label for="end-date">End Date</label>
-                    <input type="range" id="end-date" name="end-date" min="1960" max="22024"required>
+                    <input type="range" id="end-date" name="end-date" min="1960" max="2024"required>
                 </fieldset>
                 
                 <!-- Visualization Type -->
@@ -58,16 +58,16 @@
                     <input type="radio" id="line-graph" name="visualization-type" value="line-graph" checked>
 
                     <label for="bar-graph">Bar Graph</label>
-                    <input type="radio" id="bar-graph" name="visualization-type" value="bar-graph" checked>
+                    <input type="radio" id="bar-graph" name="visualization-type" value="bar-graph">
 
                     <label for="pie-chart">Pie Chart</label>
-                    <input type="radio" id="pie-chart" name="visualization-type" value="pie-chart" checked>
+                    <input type="radio" id="pie-chart" name="visualization-type" value="pie-chart">
 
-                    <label for="scatter-plot">Line Graph</label>
-                    <input type="radio" id="scatter-plot" name="visualization-type" value="scatter-plot" checked>
+                    <label for="scatter-plot">Scatter Plot</label>
+                    <input type="radio" id="scatter-plot" name="visualization-type" value="scatter-plot">
                 </fieldset>
                 
-                <button type="button">Submit</button>
+                <button id="submit-button" type="button">Submit</button>
             </form>
         </div>
 
@@ -78,6 +78,6 @@
         </div>
     </main>
    
-    <script src="./js/app.js"></script>
+    <script type="module" src="./js/app.js"></script>
 </body>
 </html>
