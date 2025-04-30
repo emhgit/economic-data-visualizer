@@ -12,48 +12,68 @@
         <h1>Economic Data Visualizer</h1>
     </header>
     <main>
+        <!-- Where user inputs form data -->
         <div id="sidebar">
-            <!-- Where user inputs form data -->
             <h2>Side Bar</h2>
+
             <form>
                 <!-- Country Data -->
-                <label for="countries">Select Countries</label>
-                <select id="countries" name="countries" multiple>
-                    <option value="USA">USA</option>
-                    <option value="Canada">Canada</option>
-                    <option value="Germany">Germany</option>
-                    <option value="UK">UK</option>
-                    <option value="China">China</option>
-                </select>
-                <br>
-
+                <fieldset>
+                    <label for="countries">Select Countries</label>
+                    <select id="countries" name="countries" multiple>
+                        <option value="USA">USA</option>
+                        <option value="Canada">Canada</option>
+                        <option value="Germany">Germany</option>
+                        <option value="UK">UK</option>
+                        <option value="China">China</option>
+                    </select>
+                </fieldset>
+                
                 <!-- Indicator Type -->
-                <label for="indicators">Select Indicators</label>
-                <input list="indicators-list" id="indicators" name="indicators" placeholder="Select Indicators" required>
-                <datalist id="indicators-list">
-                    <option value="GDP">GDP</option>
-                    <option value="GDP Growth">GDP</option>
-                    <option value="Inflation">Inflation</option>
-                    <option value="Unemployment">Unemployment</option>
-                    <option value="Gross Government Debt">Trade Balance</option>
-                </datalist>
-                <br>
-
+                <fieldset>  
+                    <label for="indicators">Select Indicators</label>
+                    <input list="indicators-list" id="indicators" name="indicators" placeholder="Select Indicators" required>
+                    <datalist id="indicators-list">
+                        <option value="GDP">GDP</option>
+                        <option value="GDP Growth">GDP</option>
+                        <option value="Inflation">Inflation</option>
+                        <option value="Unemployment">Unemployment</option>
+                        <option value="Gross Government Debt">Trade Balance</option>
+                    </datalist>
+                </fieldset>
+                
                 <!-- Time Range -->
-                <label for="time-range">Select Time Range</label>
-                <input type="date" id="start-date" name="start-date" min="1960-01-01" max="2025-01-01"required> To
-                <input type="date" id="end-date" name="end-date" min="1960-01-01" max="2025-01-01"required>
-                <br>
+                <fieldset>  
+                    <p>Select Time Range</p>
+                    <label for="start-date">Start Date</label>
+                    <input type="range" id="start-date" name="start-date" min="1960" max="2024"required>
+                    <label for="end-date">End Date</label>
+                    <input type="range" id="end-date" name="end-date" min="1960" max="22024"required>
+                </fieldset>
                 
                 <!-- Visualization Type -->
-                <label for="visualization-type">Select Visualization Type</label>
+                <fieldset>  
+                    <p>Select Visualization Type</p>
+                    <label for="line-graph">Line Graph</label>
+                    <input type="radio" id="line-graph" name="visualization-type" value="line-graph" checked>
+
+                    <label for="bar-graph">Bar Graph</label>
+                    <input type="radio" id="bar-graph" name="visualization-type" value="bar-graph" checked>
+
+                    <label for="pie-chart">Pie Chart</label>
+                    <input type="radio" id="pie-chart" name="visualization-type" value="pie-chart" checked>
+
+                    <label for="scatter-plot">Line Graph</label>
+                    <input type="radio" id="scatter-plot" name="visualization-type" value="scatter-plot" checked>
+                </fieldset>
                 
-                <!-- TODO: FINISH HTML STRUCTURE  -->
+                <button type="button">Submit</button>
             </form>
         </div>
+
+        <!-- Data visualization will be rendered here -->
         <div id="display-area">
-            <!-- Data visualization will be rendered here -->
-        <h2>Display Area</h2>
+            <h2>Display Area</h2>
 
         </div>
     </main>
