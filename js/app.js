@@ -50,35 +50,44 @@ submitButton.onclick = () => {
 
     console.log("Data to fetch:", data);
 
-    const jsonData = 
-        fetchData(data)
-        .then(response => {
-            console.log(response);
-            return response.json();
-        })
-        .catch(error => {
-            console.error("Error fetching data:", error);
-            alert("Error fetching data. Please try again."); 
-            return;
-        });
+    const chartData = getData(data)
+    .then(cleanedData => {
+        console.log("Cleaned Data:", cleanedData);
+        // Here you would call the function to render the chart with cleanedData
+        // For example: renderChart(cleanedData, visualizationType);
+        alert("Data fetched and cleaned successfully! Now you can render the chart.");
+        return cleanedData;
+    })
+    .catch(error => {
+        console.error("Error fetching chart data:", error);
+        alert("An error occurred while fetching the data. Please try again.");
+     });
 
     //input api data into chart
     //render chart
 }
 
-const getChartData = async (data) => {
+const getData = async (data) => {
     try {
         const response = await fetchData(data);
-        if (!response || response.length === 0) {
+      
+        if (!Array.isArray(response) || response.length === 0 || !response) {
             throw new Error("No data returned from API.");
         }
-        const jsonData = await response.json();
 
+        //clean the data
+        const cleanedData = cleanData(response);
+
+        if (cleanedData.length === 0 || cleanedData === undefined) {
+            throw new Error("No valid data found after cleaning.");
+        }
+
+        return cleanedData;
     } catch (error) {
         console.error("Error fetching chart data:", error);
         throw error;
     }
-}
+};
 
 
 
