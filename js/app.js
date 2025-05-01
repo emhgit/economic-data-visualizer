@@ -1,11 +1,16 @@
 //TODO: add functionality on form submit
-//(potentially) utils module to handle the data
+import { fetchData } from "./api.js";
+
 const form = document.querySelector("form");
 const countriesInput = document.getElementById("countries");
 const indicatorsInput = document.getElementById("indicators");
 const startYearInput = document.getElementById("start-year");
 const endYearInput = document.getElementById("end-year");
 const submitButton = document.getElementById("submit-button");
+
+const indicators = {
+    GDP: "NY.GDP.MKTP.CD",
+}
 
 submitButton.onclick = () => {
     const visualizationInput = document.querySelector("input[name=\"visualization-type\"]:checked");
@@ -33,9 +38,30 @@ submitButton.onclick = () => {
         alert("Please fill in all fields.");
         return;
     }
+
     //call app with values
+    const data = {
+        countries: countries,
+        indicator: indicators[indicator] || indicator, // Use the indicator from the map or the input value
+        startYear: startYear,
+        endYear: endYear
+    };
+
+    console.log("Data to fetch:", data);
+
+    const jsonData = 
+        fetchData(data)
+        .then(response => console.log(response))
+        .catch(error => {
+            console.error("Error fetching data:", error);
+            alert("Error fetching data. Please try again."); 
+            return;
+        });
+        
     //input api data into chart
     //render chart
 }
+
+
 
 

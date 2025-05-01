@@ -20,4 +20,21 @@ const fetchData = async (data) => {
     }
 }
 
+/*const mockData = {
+    "countries": ["USA", "CAN"],
+    "indicator": "NY.GDP.MKTP.CD",
+    "startYear": "2010",
+    "endYear": "2020"
+}
+
+const response = fetchData(mockData)
+    .then(data => {
+        console.log("Fetched data:", data);
+        return data;
+    })
+    .catch(error => {
+        console.error("Error in mock data fetch:", error);
+    });
+*/
+
 export { fetchData };
