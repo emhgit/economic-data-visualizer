@@ -1,5 +1,6 @@
 //TODO: add functionality on form submit
 import { fetchData } from "./api.js";
+import { cleanData } from "./utils.js"; 
 
 const form = document.querySelector("form");
 const countriesInput = document.getElementById("countries");
@@ -51,15 +52,32 @@ submitButton.onclick = () => {
 
     const jsonData = 
         fetchData(data)
-        .then(response => console.log(response))
+        .then(response => {
+            console.log(response);
+            return response.json();
+        })
         .catch(error => {
             console.error("Error fetching data:", error);
             alert("Error fetching data. Please try again."); 
             return;
         });
-        
+
     //input api data into chart
     //render chart
+}
+
+const getChartData = async (data) => {
+    try {
+        const response = await fetchData(data);
+        if (!response || response.length === 0) {
+            throw new Error("No data returned from API.");
+        }
+        const jsonData = await response.json();
+
+    } catch (error) {
+        console.error("Error fetching chart data:", error);
+        throw error;
+    }
 }
 
 
