@@ -3,8 +3,8 @@
 const form = document.querySelector("form");
 const countriesInput = document.getElementById("countries");
 const indicatorsInput = document.getElementById("indicators");
-const startDateInput = document.getElementById("start-date");
-const endDateInput = document.getElementById("end-date");
+const startYearInput = document.getElementById("start-year");
+const endYearInput = document.getElementById("end-year");
 const submitButton = document.getElementById("submit-button");
 
 submitButton.onclick = () => {
@@ -17,13 +17,22 @@ submitButton.onclick = () => {
         .map(option => option.value)
         .filter(value => value !== "");
     const indicator = indicatorsInput.value;
-    const startDate = startDateInput.value;
-    const endDate = endDateInput.value;
+    const startYear = startYearInput.value;
+    const endYear = endYearInput.value;
     const visualizationType = visualizationInput.value;
 
-    console.log(countries, indicator, startDate, endDate, visualizationType);
+    console.log(countries, indicator, startYear, endYear, visualizationType);
     
     //TODO: validate inputs
+    if(countries.length === 0 || 
+        indicator === "" || 
+        startYear === "" || 
+        endYear === "" ||
+        startYear > endYear ||
+        visualizationType === "") {
+        alert("Please fill in all fields.");
+        return;
+    }
     //call app with values
     //input api data into chart
     //render chart
