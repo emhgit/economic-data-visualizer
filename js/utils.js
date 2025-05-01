@@ -1,4 +1,4 @@
-//create function to clean the data from the world bank api
+//function to clean the data from the world bank api
 const cleanData = data  => {
     //check if data is an array and has elements
     if (!Array.isArray(data) || data.length === 0) {

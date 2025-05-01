@@ -1,4 +1,3 @@
-//TODO: add functionality on form submit
 import { fetchData } from "./api.js";
 import { cleanData } from "./utils.js"; 
 import { renderChart } from "./charts.js"; 
@@ -32,9 +31,7 @@ submitButton.onclick = () => {
     const endYear = endYearInput.value;
     const visualizationType = visualizationInput.value;
 
-    console.log(countries, indicator, startYear, endYear, visualizationType);
-    
-    //TODO: validate inputs
+    //validate inputs
     if(countries.length === 0 || 
         indicator === "" || 
         startYear === "" || 
@@ -45,7 +42,7 @@ submitButton.onclick = () => {
         return;
     }
 
-    //call app with values
+    //call api with data 
     const data = {
         countries: countries,
         indicator: indicators[indicator] || indicator, // Use the indicator from the map or the input value
@@ -58,15 +55,14 @@ submitButton.onclick = () => {
     getData(data)
     .then(cleanedData => {
         console.log("Cleaned Data:", cleanedData);
-        // Here you would call the function to render the chart with cleanedData
+
+        //render the chart with cleanedData
         renderChart(canvas, cleanedData, visualizationType, indicator);
     })
     .catch(error => {
         console.error("Error fetching chart data:", error);
         alert("An error occurred while fetching the data. Please try again.");
      });
-
-    
 }
 
 const getData = async (data) => {
@@ -83,7 +79,6 @@ const getData = async (data) => {
         if (cleanedData.length === 0 || cleanedData === undefined) {
             throw new Error("No valid data found after cleaning.");
         }
-
         return cleanedData;
     } catch (error) {
         console.error("Error fetching chart data:", error);

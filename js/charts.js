@@ -1,7 +1,7 @@
-//TODO: create function to render chart based on cleaned data and visualization type
 import { Chart } from '../node_modules/chart.js/auto';
 import { getRandomColor } from './utils.js';
 
+//function to render chart based on cleaned data and visualization type
 const renderChart = (canvas, data, visualizationType, indicator) => {
     // Create a new chart instance
     const ctx = canvas.getContext('2d');

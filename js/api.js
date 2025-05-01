@@ -1,8 +1,7 @@
-//TODO: create an api handler to get the data from the world bank api
-
 const API_BASE_URL = "https://api.worldbank.org/v2";
 const API_FORMAT = "json";
 
+//api handler to get the data from the world bank api
 const fetchData = async (data) => {
     const { countries, indicator, startYear, endYear } = data;
     const url = `${API_BASE_URL}/country/${countries.join(";")}/indicator/${indicator}?date=${startYear}:${endYear}&format=${API_FORMAT}`;
