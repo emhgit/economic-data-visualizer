@@ -2,7 +2,7 @@
 import { fetchData } from "./api.js";
 import { cleanData } from "./utils.js"; 
 
-const form = document.querySelector("form");
+const canvas = document.querySelector("canvas");
 const countriesInput = document.getElementById("countries");
 const indicatorsInput = document.getElementById("indicators");
 const startYearInput = document.getElementById("start-year");
