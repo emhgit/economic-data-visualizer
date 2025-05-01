@@ -1,6 +1,7 @@
 //TODO: add functionality on form submit
 import { fetchData } from "./api.js";
 import { cleanData } from "./utils.js"; 
+import { renderChart } from "./charts.js"; 
 
 const canvas = document.querySelector("canvas");
 const countriesInput = document.getElementById("countries");
@@ -10,8 +11,19 @@ const endYearInput = document.getElementById("end-year");
 const submitButton = document.getElementById("submit-button");
 
 const indicators = {
-    GDP: "NY.GDP.MKTP.CD",
+    "GDP (current US$)": "NY.GDP.MKTP.CD",
+    "GDP growth (annual %)": "NY.GDP.MKTP.KD.ZG",
+    "Inflation, consumer prices (annual %)" : "FP.CPI.TOTL.ZG",
+    "Unemployment, total (% of total labor force) (modeled ILO estimate)": "SL.UEM.TOTL.ZS",
+    "General government gross debt, total (% of GDP)": "GC.DOD.TOTL.GD.ZS",
 }
+
+const visualizationTypes = {
+   "Line Graph": "line",
+   "Bar Graph": "bar",
+   "Scatter Plot": "scatter",
+   "Pie Chart": "pie",
+};
 
 submitButton.onclick = () => {
     const visualizationInput = document.querySelector("input[name=\"visualization-type\"]:checked");
@@ -63,8 +75,8 @@ submitButton.onclick = () => {
         alert("An error occurred while fetching the data. Please try again.");
      });
 
-    //input api data into chart
     //render chart
+    renderChart(canvas, chartData, visualizationTypes[visualizationType], indicator);
 }
 
 const getData = async (data) => {
