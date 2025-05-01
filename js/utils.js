@@ -27,4 +27,6 @@ const getRandomColor = () => {
     return `rgb(${randomR}, ${randomG}, ${randomB})`;
 }
 
+//TODO: create functions to group inputs into distinct country objects and scale values
+
 export { cleanData, getRandomColor };
