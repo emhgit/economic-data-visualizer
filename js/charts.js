@@ -1,5 +1,6 @@
 //TODO: create function to render chart based on cleaned data and visualization type
 import { Chart } from '../node_modules/chart.js/auto';
+import { getRandomColor } from './utils.js';
 
 const renderChart = (canvas, data, visualizationType, indicator) => {
     // Create a new chart instance
@@ -10,7 +11,7 @@ const renderChart = (canvas, data, visualizationType, indicator) => {
             labels: data.map(item => item.date),
             datasets: data.map(item => ({
                 label: item.country,
-                data: item.value,
+                data: item.value / 1000000,
                 fill: false,
                 borderColor: getRandomColor(),
                 tension: 0.1
@@ -24,7 +25,7 @@ const renderChart = (canvas, data, visualizationType, indicator) => {
                 },
                 title: {
                     display: true,
-                    text: `Indicator: ${indicator} for Countries by Year` 
+                    text: `${indicator} for Countries by Year` 
                 }
             }
         }

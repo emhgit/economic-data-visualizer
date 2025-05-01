@@ -18,13 +18,6 @@ const indicators = {
     "General government gross debt, total (% of GDP)": "GC.DOD.TOTL.GD.ZS",
 }
 
-const visualizationTypes = {
-   "Line Graph": "line",
-   "Bar Graph": "bar",
-   "Scatter Plot": "scatter",
-   "Pie Chart": "pie",
-};
-
 submitButton.onclick = () => {
     const visualizationInput = document.querySelector("input[name=\"visualization-type\"]:checked");
 
@@ -62,21 +55,18 @@ submitButton.onclick = () => {
 
     console.log("Data to fetch:", data);
 
-    const chartData = getData(data)
+    getData(data)
     .then(cleanedData => {
         console.log("Cleaned Data:", cleanedData);
         // Here you would call the function to render the chart with cleanedData
-        // For example: renderChart(cleanedData, visualizationType);
-        alert("Data fetched and cleaned successfully! Now you can render the chart.");
-        return cleanedData;
+        renderChart(canvas, cleanedData, visualizationType, indicator);
     })
     .catch(error => {
         console.error("Error fetching chart data:", error);
         alert("An error occurred while fetching the data. Please try again.");
      });
 
-    //render chart
-    renderChart(canvas, chartData, visualizationTypes[visualizationType], indicator);
+    
 }
 
 const getData = async (data) => {

@@ -34,11 +34,11 @@
                     <label for="indicators">Select Indicators</label>
                     <input list="indicators-list" id="indicators" name="indicators" placeholder="Select Indicators" required>
                     <datalist id="indicators-list">
-                        <option value="GDP">GDP (current US$)</option>
-                        <option value="GDP Growth">GDP growth (annual %)</option>
-                        <option value="Inflation">Inflation, consumer prices (annual %)</option>
-                        <option value="Unemployment">Unemployment, total (% of total labor force)</option>
-                        <option value="Gross Government Debt">General government gross debt (% of GDP)</option>
+                        <option value="GDP (current US$)">GDP</option>
+                        <option value="GDP growth (annual %)">GDP Growth</option>
+                        <option value="Inflation, consumer prices (annual %)">Inflation</option>
+                        <option value="Unemployment, total (% of total labor force">)Unemployment</option>
+                        <option value="General government gross debt (% of GDP)">Gross Government Debt</option>
                     </datalist>
                 </fieldset>
                 
@@ -46,25 +46,25 @@
                 <fieldset>  
                     <p>Select Time Range</p>
                     <label for="start-date">Start Year</label>
-                    <input type="number" id="start-year" name="start-year" min="1960" max="2024"required>
+                    <input type="number" id="start-year" name="start-year" min="1960" max="2024" required>
                     <label for="end-date">End Year</label>
-                    <input type="number" id="end-year" name="end-year" min="1960" max="2024"required>
+                    <input type="number" id="end-year" name="end-year" min="1960" max="2024 " required>
                 </fieldset>
                 
                 <!-- Visualization Type -->
                 <fieldset>  
                     <p>Select Visualization Type</p>
                     <label for="line-graph">Line Graph</label>
-                    <input type="radio" id="line-graph" name="visualization-type" value="line-graph" checked>
+                    <input type="radio" id="line-graph" name="visualization-type" value="line" checked>
 
                     <label for="bar-graph">Bar Graph</label>
-                    <input type="radio" id="bar-graph" name="visualization-type" value="bar-graph">
+                    <input type="radio" id="bar-graph" name="visualization-type" value="bar">
 
                     <label for="pie-chart">Pie Chart</label>
-                    <input type="radio" id="pie-chart" name="visualization-type" value="pie-chart">
+                    <input type="radio" id="pie-chart" name="visualization-type" value="pie-">
 
                     <label for="scatter-plot">Scatter Plot</label>
-                    <input type="radio" id="scatter-plot" name="visualization-type" value="scatter-plot">
+                    <input type="radio" id="scatter-plot" name="visualization-type" value="scatter">
                 </fieldset>
                 
                 <button id="submit-button" type="button">Submit</button>
