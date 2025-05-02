@@ -54,12 +54,12 @@ submitButton.onclick = () => {
         indicator === "" || 
         startYear === "" || 
         endYear === "" ||
-        startYear > endYear ||
         visualizationType === "") {
         alert("Please fill in all fields.");
         return;
     }
-
+    else if (startYear > endYear) alert("Start year cannot be greater than end year.");
+    
     //call api with data 
     const data = {
         countries: countries,

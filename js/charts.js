@@ -26,7 +26,18 @@ const renderChart = (canvas, data, visualizationType, indicator, scaleAttributes
         options: {
             responsive: true,
             scales: {
+                x: {
+                    type: 'category', // Use linear scale for years
+                    title: {
+                        display: true,
+                        text: 'Year'
+                    },
+                },
                 y: {
+                    title: {
+                        display: true,
+                        text: "US Dollars"
+                    },
                     ticks: {
                         callback: function(value) {
                             return value + scaleAttributes.ticker; // Format numbers with commas
@@ -53,14 +64,16 @@ const renderChart = (canvas, data, visualizationType, indicator, scaleAttributes
 function getChartData(item, visualizationType, scaleAttributes) {
     switch (visualizationType) {
         case "scatter":
-            return item.values.map((value, index) => ({ x: item.years[index], y: value / scaleAttributes.factor })).reverse();
+            const scatterData = item.values.map((value, index) => ({ x: item.years[index], y: value / scaleAttributes.factor })).reverse();
+            console.log("Rendering scatter chart", scatterData);
+            return scatterData;
         default:
             return item.values.map(value => value / scaleAttributes.factor).reverse(); // Scale the values for readability
     }
 }
 
 /*TODO: 
-fix double conversion for years; 
+fix double conversion for years; x
 fix api call values; 
 attempt multiple countries x
 use CSS for styling; 
