@@ -50,7 +50,8 @@ const groupData = data => {
 
 //scales values for chart readability
 const getScaleAttributes = data => {
-    const  max = Math.max(...data);
+    const allValues = data.flatMap(item => item.values);
+    const max = Math.max(...allValues);
     let factor = 1, ticker = "";
     
     if(max >= 1e12){
