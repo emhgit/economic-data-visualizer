@@ -7,6 +7,7 @@ const renderChart = (canvas, data, visualizationType, indicator, scaleAttributes
     // Check if a chart instance already exists and destroy it
     if (chartInstance) {
         chartInstance.destroy();
+        console.log("Chart instance destroyed.");
     }
     // Create a new chart instance
     const ctx = canvas.getContext('2d');
@@ -16,7 +17,7 @@ const renderChart = (canvas, data, visualizationType, indicator, scaleAttributes
             labels: data.flatMap(item => item.years).reverse(), // Flatten years for x-axis labels
             datasets: data.map(item => ({
                 label: item.country,
-                data: item.values.map(value => value / scaleAttributes.factor).reverse(), // Scale the values
+                data: getChartData(item, visualizationType, scaleAttributes), // Scale the values
                 fill: false,
                 borderColor: getRandomColor(),
                 tension: 0.1
@@ -48,5 +49,16 @@ const renderChart = (canvas, data, visualizationType, indicator, scaleAttributes
     chartInstance = chart; // Store the chart instance for potential future updates or destruction
     return chart;
 };
+
+function getChartData(item, visualizationType, scaleAttributes) {
+    switch (visualizationType) {
+        case "scatter":
+            return item.values.map((value, index) => ({ x: item.years[index], y: value / scaleAttributes.factor })).reverse();
+        default:
+            return item.values.map(value => value / scaleAttributes.factor).reverse(); // Scale the values for readability
+    }
+}
+
+//TODO: fix double conversion for years; fix api call values; use CSS for styling; attempt multiple countries
     
 export { renderChart };
