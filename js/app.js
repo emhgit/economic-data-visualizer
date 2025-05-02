@@ -17,6 +17,24 @@ const indicators = {
     "General government gross debt, total (% of GDP)": "GC.DOD.TOTL.GD.ZS",
 }
 
+fetch("./countries.json")
+.then(response => response.json())
+.then(data => { 
+    data.countries.forEach(country => {
+        const option = document.createElement("option");
+        option.value = country.code;
+        option.textContent = country.name;
+        countriesInput.appendChild(option);
+    });
+})
+.catch(error => {
+    console.error("Error fetching countries data:", error);
+    alert("An error occurred while loading countries. Please try again later.");
+})
+
+
+
+
 submitButton.onclick = () => {
     const visualizationInput = document.querySelector("input[name=\"visualization-type\"]:checked");
 
