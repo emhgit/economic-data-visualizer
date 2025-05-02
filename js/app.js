@@ -1,5 +1,5 @@
 import { fetchData } from "./api.js";
-import { cleanData } from "./utils.js"; 
+import { cleanData, groupData, getScaleAttributes } from "./utils.js"; 
 import { renderChart } from "./charts.js"; 
 
 const canvas = document.querySelector("canvas");
@@ -55,9 +55,10 @@ submitButton.onclick = () => {
     getData(data)
     .then(cleanedData => {
         console.log("Cleaned Data:", cleanedData);
-
+        const groupedData = groupData(cleanedData);
+        const scaleAttributes = getScaleAttributes(groupedData.map(item => item.value));
         //render the chart with cleanedData
-        renderChart(canvas, cleanedData, visualizationType, indicator);
+        renderChart(canvas, groupedData, visualizationType, indicator, scaleAttributes);
     })
     .catch(error => {
         console.error("Error fetching chart data:", error);
