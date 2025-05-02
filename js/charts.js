@@ -1,8 +1,13 @@
 import { Chart } from '../node_modules/chart.js/auto';
 import { getRandomColor } from './utils.js';
 
+let chartInstance = null; // Variable to hold the chart instance
 //function to render chart based on cleaned data and visualization type
 const renderChart = (canvas, data, visualizationType, indicator, scaleAttributes) => {
+    // Check if a chart instance already exists and destroy it
+    if (chartInstance) {
+        chartInstance.destroy();
+    }
     // Create a new chart instance
     const ctx = canvas.getContext('2d');
     const chart = new Chart(ctx, {
@@ -40,6 +45,7 @@ const renderChart = (canvas, data, visualizationType, indicator, scaleAttributes
         }
     });
 
+    chartInstance = chart; // Store the chart instance for potential future updates or destruction
     return chart;
 };
     
