@@ -8,10 +8,10 @@ const renderChart = (canvas, data, visualizationType, indicator, scaleAttributes
     const chart = new Chart(ctx, {
         type: visualizationType,
         data: {
-            labels: data.map(item => item.dates),
+            labels: data.flatMap(item => item.years).reverse(), // Flatten years for x-axis labels
             datasets: data.map(item => ({
                 label: item.country,
-                data: item.values.map(value => value / scaleAttributes.factor), // Scale the values
+                data: item.values.map(value => value / scaleAttributes.factor).reverse(), // Scale the values
                 fill: false,
                 borderColor: getRandomColor(),
                 tension: 0.1

@@ -41,7 +41,7 @@ const groupData = data => {
                 };
             }
             //add values to the item
-            acc[item.country].years.push(item.year);
+            acc[item.country].years.push(item.date);
             acc[item.country].values.push(item.value);
             return acc;
         }, {})
@@ -66,7 +66,11 @@ const getScaleAttributes = data => {
         factor = 1e6;
         ticker = "M";
     }
-
+    else if(max >= 1e3){
+        factor = 1e3;
+        ticker = "K";
+    }
+    
     return {
         factor,
         ticker

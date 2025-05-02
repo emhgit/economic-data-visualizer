@@ -56,7 +56,8 @@ submitButton.onclick = () => {
     .then(cleanedData => {
         console.log("Cleaned Data:", cleanedData);
         const groupedData = groupData(cleanedData);
-        const scaleAttributes = getScaleAttributes(groupedData.map(item => item.value));
+        console.log("Grouped Data:", groupedData);
+        const scaleAttributes = getScaleAttributes(groupedData);
         //render the chart with cleanedData
         renderChart(canvas, groupedData, visualizationType, indicator, scaleAttributes);
     })
