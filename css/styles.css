@@ -1,13 +1,33 @@
 /*TODO: style header, sidebar, display-area*/
 main {
     display: flex;
+    justify-content: space-evenly;
     height: 100vh;
 }
 
-.sidebar {
-    width: 50%;
+#sidebar {
+    /*background-color: red;*/
 }
 
-.display-area {
-    width: 50%;
+h2 {
+    text-align: center;
+}
+
+header {
+    text-align: center;
+}
+
+
+fieldset {
+    display:grid;
+}
+
+#display-area {
+    /*background-color: blue;*/
+}
+
+button {
+    font-weight: bold;
+    height: 35px;
+    width: 100px;
 }
