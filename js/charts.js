@@ -14,7 +14,7 @@ const renderChart = (canvas, data, visualizationType, indicator, scaleAttributes
     const chart = new Chart(ctx, {
         type: visualizationType,
         data: {
-            labels: data.flatMap(item => item.years).reverse(), // Flatten years for x-axis labels
+            labels: [...new Set(data.flatMap(item => item.years))].reverse(), // Flatten years for x-axis labels
             datasets: data.map(item => ({
                 label: item.country,
                 data: getChartData(item, visualizationType, scaleAttributes), // Scale the values
@@ -59,6 +59,10 @@ function getChartData(item, visualizationType, scaleAttributes) {
     }
 }
 
-//TODO: fix double conversion for years; fix api call values; use CSS for styling; attempt multiple countries
-    
+/*TODO: 
+fix double conversion for years; 
+fix api call values; 
+attempt multiple countries x
+use CSS for styling; 
+*/
 export { renderChart };
