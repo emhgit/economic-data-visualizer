@@ -31,3 +31,10 @@ button {
     height: 35px;
     width: 100px;
 }
+
+/* Override the selected item background and text color */
+.choices__list--multiple .choices__item {
+    background-color: #ccc !important; /* grey background */
+    color: #000 !important;            /* black text (optional) */
+    border: none !important;
+}
