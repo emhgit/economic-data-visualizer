@@ -17,7 +17,7 @@ const indicators = {
     "General government gross debt, total (% of GDP)": "GC.DOD.TOTL.GD.ZS",
 }
 
-fetch("./countries.json")
+fetch("../data/countries.json")
 .then(response => response.json())
 .then(data => { 
     data.countries.forEach(country => {
