@@ -1,6 +1,8 @@
 import { fetchData } from "./api.js";
 import { cleanData, groupData, getScaleAttributes } from "./utils.js"; 
 import { renderChart } from "./charts.js"; 
+import Choices from "../node_modules/choices.js/";
+import "../node_modules/choices.js/public/assets/styles/choices.min.css";
 
 const canvas = document.querySelector("canvas");
 const countriesInput = document.getElementById("countries");
@@ -17,20 +19,29 @@ const indicators = {
     "General government gross debt, total (% of GDP)": "GC.DOD.TOTL.GD.ZS",
 }
 
-fetch("../data/countries.json")
-.then(response => response.json())
-.then(data => { 
-    data.countries.forEach(country => {
-        const option = document.createElement("option");
-        option.value = country.code;
-        option.textContent = country.name;
-        countriesInput.appendChild(option);
-    });
-})
-.catch(error => {
-    console.error("Error fetching countries data:", error);
-    alert("An error occurred while loading countries. Please try again later.");
-})
+const renderCountriesInput = () => {
+    fetch("../data/countries.json")
+    .then(response => response.json())
+    .then(data => { 
+        data.countries.forEach(country => {
+            const option = document.createElement("option");
+            option.value = country.code;
+            option.textContent = country.name;
+            countriesInput.appendChild(option);
+        });
+    
+        const countriesChoices = new Choices(countriesInput, {
+            removeItemButton: true,
+            searchEnabled: true,
+        });
+    })
+    .catch(error => {
+        console.error("Error fetching countries data:", error);
+        alert("An error occurred while loading countries. Please try again later.");
+    })
+}
+
+renderCountriesInput();
 
 submitButton.onclick = () => {
     const visualizationInput = document.querySelector("input[name=\"visualization-type\"]:checked");
@@ -105,7 +116,3 @@ const getData = async (data) => {
         throw error;
     }
 };
-
-
-
-
