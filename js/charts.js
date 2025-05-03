@@ -11,7 +11,7 @@ const renderChart = (canvas, data, visualizationType, indicator, scaleAttributes
     }
     // Create a new chart instance
     
-    const chartData = getChartData(data, visualizationType, scaleAttributes);
+    const chartData = getChartData(data, visualizationType, scaleAttributes, indicator);
     const ctx = canvas.getContext('2d');
     const chart = new Chart(ctx, {
         type: visualizationType,
@@ -19,41 +19,55 @@ const renderChart = (canvas, data, visualizationType, indicator, scaleAttributes
             labels: chartData.labels, // Flatten years for x-axis labels
             datasets: chartData.datasets
         },
-        options: {
-            responsive: true,
-            scales: {
-                x: {
-                    type: 'category', // Use linear scale for years
-                    title: {
-                        display: true,
-                        text: 'Year'
-                    },
-                },
-                y: {
-                    ticks: {
-                        callback: function(value) {
-                            return value + scaleAttributes.ticker; // Format numbers with commas
-                        }
-                    }
-                }
-            },
-            plugins: {
-                legend: {
-                    position: 'bottom',
-                },
-                title: {
-                    display: true,
-                    text: `${indicator} for Countries by Year` 
-                }
-            }
-        }
+        options: chartData.options
     });
 
     chartInstance = chart; // Store the chart instance for potential future updates or destruction
     return chart;
 };
 
-function getChartData(data, visualizationType, scaleAttributes) {
+function getChartData(data, visualizationType, scaleAttributes, indicator) {
+    const defaultOptions = {
+        responsive: true,
+        scales: {
+            x: {
+                type: 'category', // Use linear scale for years
+                title: {
+                    display: true,
+                    text: 'Year'
+                },
+            },
+            y: {
+                ticks: {
+                    callback: function(value) {
+                        return value + scaleAttributes.ticker; // Format numbers with commas
+                    }
+                }
+            }
+        },
+        plugins: {
+            legend: {
+                position: 'bottom',
+            },
+            title: {
+                display: true,
+                text: `${indicator} for Countries by Year` 
+            }
+        }
+    };
+
+    const pieOrDonutOptions = {
+        plugins: {
+            legend: {
+                position: 'bottom',
+            },
+            title: {
+                display: true,
+                text: `${indicator} for Countries by Year` 
+            }
+        }
+    };
+
     switch (visualizationType) {
         case "scatter":
             const scatterXData = [...new Set(data.flatMap(item => item.years))].reverse();
@@ -67,7 +81,7 @@ function getChartData(data, visualizationType, scaleAttributes) {
                 borderColor: getRandomColor(),
                 tension: 0.1
             }));
-            return { labels: scatterXData, datasets: scatterYData };
+            return { labels: scatterXData, datasets: scatterYData, options: defaultOptions };
         
         case "pie":
             // pieXData logic to be added later
@@ -82,23 +96,27 @@ function getChartData(data, visualizationType, scaleAttributes) {
                     fill: true,
                     backgroundColor: data.map(() => getRandomColor()),
                     tension: 0.1
-                }]
+                }],
+                options: pieOrDonutOptions
             };
-            case "donut":
-                // pieXData logic to be added later
-                const donutXData = data.flatMap(item => item.country);
-                const latestDonutIdx = data[0].values.length - 1;
-                const donutData = data.map(item => item.values[latestDonutIdx] / scaleAttributes.factor);
-              
-                return { 
-                    labels: donutXData, 
-                    datasets: [{
-                        data: donutData,
-                        fill: true,
-                        backgroundColor: data.map(() => getRandomColor()),
-                        tension: 0.1
-                    }]
-                };
+
+        case "doughnut":
+            // pieXData logic to be added later
+            const donutXData = data.flatMap(item => item.country);
+            const latestDonutIdx = data[0].values.length - 1;
+            const donutData = data.map(item => item.values[latestDonutIdx] / scaleAttributes.factor);
+            
+            return { 
+                labels: donutXData, 
+                datasets: [{
+                    data: donutData,
+                    fill: true,
+                    backgroundColor: data.map(() => getRandomColor()),
+                    tension: 0.1
+                }],
+                options: pieOrDonutOptions
+            };
+            
         default:
             const defaultXData = [...new Set(data.flatMap(item => item.years))].reverse();
             const defaultYData = data.map(item => ({
@@ -110,7 +128,7 @@ function getChartData(data, visualizationType, scaleAttributes) {
                 borderColor: getRandomColor(),
                 tension: 0.1
             }));
-            return { labels: defaultXData, datasets: defaultYData };
+            return { labels: defaultXData, datasets: defaultYData, options: defaultOptions };
     }
 }
 
