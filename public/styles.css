@@ -3,21 +3,60 @@ body {
     background-color: #1d1d1d;
     color: white;
 }
+
+header {
+    text-align: center;
+    background-color: #ccc;
+    width: 95vw;
+    color: black;
+    font-family: Arial;
+    justify-self: center;
+    text-transform: uppercase;
+}
+
 main {
     display: flex;
     justify-content: space-evenly;
     height: 100vh;
-    font-family: Verdana;
+    font-family: Arial;
 }
 
 main #sidebar {
-    align-self: center;
+    align-self: flex-start;
     transform: scale(1.05);
-    margin-bottom: 50px;
+    margin-top: 30px;
+    padding: 15px;
+    border: 1px solid white;
+}
+
+main #display-area {
+    /*background-color: blue;*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-height: 90%;
+    width: 1000px;
+    background-color: white;
+    border: 5px solid black;
 }
 
 p {
     font-weight: bold;
+    text-transform: uppercase;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 20px;
+    /*background-color: gray;*/
+}
+
+fieldset {
+    display: grid;
+    gap: 5px;
+    border-radius: 8px;
 }
 
 label {
@@ -34,51 +73,18 @@ input {
     border: 1px solid black;
 }
 
-#sidebar {
-    /*background-color: red;*/
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: 20px;
-    /*background-color: gray;*/
-}
-
 form button {
     align-self: center;
     font-weight: bold;
     height: 35px;
     width: 100px;
     border-radius: 8px;
-    border: 1px solid black;
+    border: 3px solid black;
+    text-transform: uppercase;
 }
 
-h2 {
-    text-align: center;
-}
 
-header {
-    text-align: center;
-    background-color: #ccc;
-}
 
-fieldset {
-    display: grid;
-    gap: 5px;
-    border-radius: 8px;
-}
-
-#display-area {
-    /*background-color: blue;*/
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    max-height: 90%;
-    width: 1000px;
-    background-color: white;
-}
 
 /* Override the selected item background and text color */
 .choices__list--multiple .choices__item {
