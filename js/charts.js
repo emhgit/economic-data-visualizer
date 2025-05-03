@@ -116,7 +116,20 @@ function getChartData(data, visualizationType, scaleAttributes, indicator) {
                 }],
                 options: pieOrDonutOptions
             };
-            
+
+        case "bar":
+            const barXData = [...new Set(data.flatMap(item => item.years))].reverse();
+            const barYData = data.map(item => ({
+                label: item.country,
+                data: item.values
+                .map(value => value / scaleAttributes.factor)
+                .reverse(),
+                fill: true,
+                backgroundColor: getRandomColor(),
+                tension: 0.1
+            }));
+            return { labels: barXData, datasets: barYData, options: defaultOptions };
+
         default:
             const defaultXData = [...new Set(data.flatMap(item => item.years))].reverse();
             const defaultYData = data.map(item => ({
