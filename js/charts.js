@@ -10,18 +10,14 @@ const renderChart = (canvas, data, visualizationType, indicator, scaleAttributes
         console.log("Chart instance destroyed.");
     }
     // Create a new chart instance
+    
+    const chartData = getChartData(data, visualizationType, scaleAttributes);
     const ctx = canvas.getContext('2d');
     const chart = new Chart(ctx, {
         type: visualizationType,
         data: {
-            labels: [...new Set(data.flatMap(item => item.years))].reverse(), // Flatten years for x-axis labels
-            datasets: data.map(item => ({
-                label: item.country,
-                data: getChartData(item, visualizationType, scaleAttributes), // Scale the values
-                fill: false,
-                borderColor: getRandomColor(),
-                tension: 0.1
-            }))
+            labels: chartData.labels, // Flatten years for x-axis labels
+            datasets: chartData.datasets
         },
         options: {
             responsive: true,
@@ -57,21 +53,73 @@ const renderChart = (canvas, data, visualizationType, indicator, scaleAttributes
     return chart;
 };
 
-function getChartData(item, visualizationType, scaleAttributes) {
+function getChartData(data, visualizationType, scaleAttributes) {
     switch (visualizationType) {
         case "scatter":
-            const scatterData = item.values.map((value, index) => ({ x: item.years[index], y: value / scaleAttributes.factor })).reverse();
-            console.log("Rendering scatter chart", scatterData);
-            return scatterData;
+            const scatterXData = [...new Set(data.flatMap(item => item.years))].reverse();
+            const scatterYData = data.map(item => ({
+                label: item.country,
+                data: item.values.map((value, index) => ({
+                    x: item.years[index],
+                    y: value / scaleAttributes.factor
+                })).reverse(),
+                fill: false,
+                borderColor: getRandomColor(),
+                tension: 0.1
+            }));
+            return { labels: scatterXData, datasets: scatterYData };
+        
+        case "pie":
+            // pieXData logic to be added later
+            const pieXData = data.flatMap(item => item.country);
+            const latestIdx = data[0].values.length - 1;
+            const pieData = data.map(item => item.values[latestIdx] / scaleAttributes.factor);
+          
+            return { 
+                labels: pieXData, 
+                datasets: [{
+                    data: pieData,
+                    fill: true,
+                    backgroundColor: data.map(() => getRandomColor()),
+                    tension: 0.1
+                }]
+            };
+            case "donut":
+                // pieXData logic to be added later
+                const donutXData = data.flatMap(item => item.country);
+                const latestDonutIdx = data[0].values.length - 1;
+                const donutData = data.map(item => item.values[latestDonutIdx] / scaleAttributes.factor);
+              
+                return { 
+                    labels: donutXData, 
+                    datasets: [{
+                        data: donutData,
+                        fill: true,
+                        backgroundColor: data.map(() => getRandomColor()),
+                        tension: 0.1
+                    }]
+                };
         default:
-            return item.values.map(value => value / scaleAttributes.factor).reverse(); // Scale the values for readability
+            const defaultXData = [...new Set(data.flatMap(item => item.years))].reverse();
+            const defaultYData = data.map(item => ({
+                label: item.country,
+                data: item.values
+                .map(value => value / scaleAttributes.factor)
+                .reverse(),
+                fill: false,
+                borderColor: getRandomColor(),
+                tension: 0.1
+            }));
+            return { labels: defaultXData, datasets: defaultYData };
     }
 }
 
+
 /*TODO: 
-fix double conversion for years; x
-fix api call values; 
 attempt multiple countries x
-use CSS for styling; 
+fix double conversion for years; x
+fix pie chart;
+create indicators.json;
+//improve ui: type and dropdown for large option inputs, coloring, spacing, font changes, etc
 */
 export { renderChart };
