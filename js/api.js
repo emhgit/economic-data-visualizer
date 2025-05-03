@@ -3,7 +3,12 @@ const API_FORMAT = "json";
 
 //api handler to get the data from the world bank api
 const fetchData = async (data) => {
-    const { countries, indicator, startYear, endYear } = data;
+    let { countries, indicator, startYear, endYear } = data;
+    /*
+    if(startYear === endYear){
+        startYear += "Q1";
+        endYear += "Q4";
+    }*/
     const url = `${API_BASE_URL}/country/${countries.join(";")}/indicator/${indicator}?date=${startYear}:${endYear}&format=${API_FORMAT}`;
     console.log("Fetching data from URL:", url);
     try {

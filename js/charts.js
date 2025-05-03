@@ -2,6 +2,7 @@ import { Chart } from '../node_modules/chart.js/auto';
 import { getRandomColor } from './utils.js';
 
 let chartInstance = null; // Variable to hold the chart instance
+
 //function to render chart based on cleaned data and visualization type
 const renderChart = (canvas, data, visualizationType, indicator, scaleAttributes) => {
     // Check if a chart instance already exists and destroy it
@@ -9,8 +10,8 @@ const renderChart = (canvas, data, visualizationType, indicator, scaleAttributes
         chartInstance.destroy();
         console.log("Chart instance destroyed.");
     }
+
     // Create a new chart instance
-    
     const chartData = getChartData(data, visualizationType, scaleAttributes, indicator);
     const ctx = canvas.getContext('2d');
     const chart = new Chart(ctx, {
@@ -153,4 +154,5 @@ fix pie chart; x
 create indicators.json;
 //improve ui: type and dropdown for large option inputs, coloring, spacing, font changes, etc
 */
+
 export { renderChart };
