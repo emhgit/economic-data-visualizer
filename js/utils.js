@@ -70,6 +70,10 @@ const getScaleAttributes = data => {
         factor = 1e3;
         ticker = "K";
     }
+    else if (max <= 100){
+        factor = 1;
+        ticker = "%"; //likely a percentage
+    }
     
     return {
         factor,

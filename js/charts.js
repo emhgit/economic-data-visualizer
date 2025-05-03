@@ -34,10 +34,6 @@ const renderChart = (canvas, data, visualizationType, indicator, scaleAttributes
                     },
                 },
                 y: {
-                    title: {
-                        display: true,
-                        text: "US Dollars"
-                    },
                     ticks: {
                         callback: function(value) {
                             return value + scaleAttributes.ticker; // Format numbers with commas
