@@ -136,7 +136,7 @@ function getChartData(data, visualizationType, scaleAttributes, indicator) {
 /*TODO: 
 attempt multiple countries x
 fix double conversion for years; x
-fix pie chart;
+fix pie chart; x
 create indicators.json;
 //improve ui: type and dropdown for large option inputs, coloring, spacing, font changes, etc
 */

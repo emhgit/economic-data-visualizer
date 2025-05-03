@@ -32,9 +32,6 @@ fetch("../data/countries.json")
     alert("An error occurred while loading countries. Please try again later.");
 })
 
-
-
-
 submitButton.onclick = () => {
     const visualizationInput = document.querySelector("input[name=\"visualization-type\"]:checked");
 
@@ -58,7 +55,10 @@ submitButton.onclick = () => {
         alert("Please fill in all fields.");
         return;
     }
-    else if (startYear > endYear) alert("Start year cannot be greater than end year.");
+    else if (startYear > endYear || startYear < 1960 || endYear < 1960 || startYear > 2025 || endYear > 2025){
+        alert("Invalid year format");
+        return;
+    }
 
     //call api with data 
     const data = {
