@@ -15,12 +15,10 @@
     <main>
         <!-- Where user inputs form data -->
         <div id="sidebar">
-            <h2>Side Bar</h2>
-
             <form>
                 <!-- Country Data -->
                 <fieldset>
-                    <label for="countries">Select Countries</label>
+                    <p>Select Countries</p>
                     <select id="countries" name="countries" multiple>
                         <!--<option value="USA">USA</option>
                         <option value="Canada">Canada</option>
@@ -33,7 +31,7 @@
                 
                 <!-- Indicator Type -->
                 <fieldset>  
-                    <label for="indicators">Select Indicators</label>
+                    <p>Select Indicators</p>
                     <input list="indicators-list" id="indicators" name="indicators" placeholder="Select Indicators" required>
                     <datalist id="indicators-list">
                         <option value="GDP (current US$)">GDP</option>
@@ -56,20 +54,31 @@
                 <!-- Visualization Type -->
                 <fieldset>  
                     <p>Select Visualization Type</p>
-                    <label for="line-graph">Line Graph</label>
-                    <input type="radio" id="line-graph" name="visualization-type" value="line" checked>
+                    
+                    <label for="line-graph">
+                        <input type="radio" id="line-graph" name="visualization-type" value="line" checked>
+                        Line Graph
+                    </label>
 
-                    <label for="bar-graph">Bar Graph</label>
-                    <input type="radio" id="bar-graph" name="visualization-type" value="bar">
+                    <label for="bar-graph">
+                        <input type="radio" id="bar-graph" name="visualization-type" value="bar">
+                        Bar Graph
+                    </label>
 
-                    <label for="pie-chart">Pie Chart</label>
-                    <input type="radio" id="pie-chart" name="visualization-type" value="pie">
+                    <label for="pie-chart">
+                        <input type="radio" id="pie-chart" name="visualization-type" value="pie">
+                        Pie Chart
+                    </label>
 
-                    <label for="donut-chart">Donut Chart</label>
-                    <input type="radio" id="donut-chart" name="visualization-type" value="doughnut">
+                    <label for="donut-chart">
+                        <input type="radio" id="donut-chart" name="visualization-type" value="doughnut">
+                        Donut Chart
+                    </label>
 
-                    <label for="scatter-plot">Scatter Plot</label>
-                    <input type="radio" id="scatter-plot" name="visualization-type" value="scatter">
+                    <label for="scatter-plot">
+                        <input type="radio" id="scatter-plot" name="visualization-type" value="scatter">
+                        Scatter Plot
+                    </label>
                 </fieldset>
                 
                 <button id="submit-button" type="button">Submit</button>
@@ -78,9 +87,7 @@
 
         <!-- Data visualization will be rendered here -->
         <div id="display-area">
-            <h2>Display Area</h2>
-
-            <canvas id="visualization-canvas" width="800" height="600"></canvas>
+            <canvas id="visualization-canvas" width="800" height="500"></canvas>
         </div>
     </main>
    
