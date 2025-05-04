@@ -102,7 +102,6 @@ function getChartData(data, visualizationType, scaleAttributes, indicator) {
             };
 
         case "doughnut":
-            // pieXData logic to be added later
             const donutXData = data.flatMap(item => item.country);
             const latestDonutIdx = data[0].values.length - 1;
             const donutData = data.map(item => item.values[latestDonutIdx] / scaleAttributes.factor);
@@ -145,14 +144,5 @@ function getChartData(data, visualizationType, scaleAttributes, indicator) {
             return { labels: defaultXData, datasets: defaultYData, options: defaultOptions };
     }
 }
-
-
-/*TODO: 
-attempt multiple countries x
-fix double conversion for years; x
-fix pie chart; x
-create indicators.json;
-//improve ui: type and dropdown for large option inputs, coloring, spacing, font changes, etc
-*/
 
 export { renderChart };

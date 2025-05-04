@@ -1,0 +1,50 @@
+[
+    {
+        "name": "GDP (current US$)",
+        "code": "NY.GDP.MKTP.CD"
+    },
+    {
+        "name": "GDP per capita (current US$)",
+        "code": "NY.GDP.PCAP.CD"
+    },
+    {
+        "name":"GDP growth (annual %)",
+        "code": "NY.GDP.MKTP.KD.ZG"
+    },
+    {
+        "name": "Inflation, consumer prices (annual %)",
+        "code": "FP.CPI.TOTL.ZG"
+    },
+    {
+        "name": "General government gross debt, total (% of GDP)",
+        "code": "GC.DOD.TOTL.GD.ZS"
+    },
+    {
+        "name": "Unemployment, total (% of total labor force)",
+        "code": "SL.UEM.TOTL.ZS"
+    },
+    {
+        "name": "Population, total",
+        "code": "SP.POP.TOTL"
+    },
+    {
+        "name": "Life expectancy at birth, total (years)",
+        "code": "SP.DYN.LE00.IN"
+    },
+    {
+        "name": "CO2 emissions (metric tons per capita)",
+        "code": "EN.ATM.CO2E.PC"
+    },
+    {
+        "name": "Poverty headcount ratio at $2.15 a day (2017 PPP) (% of population)",
+        "code": "SI.POV.DDAY"
+    },
+    {
+        "name": "Net official development assistance received (current US$)",
+        "code": "DT.ODA.ODAT.CD"
+    },
+    {
+        "name": "School enrollment, primary (% gross)",
+        "code": "SE.PRM.ENRR"
+    }
+]

@@ -19,7 +19,6 @@ const cleanData = data  => {
     }).filter(item => item !== null); // Filter out any null items
 }
 
-//create function to format the data for the chart
 const getRandomColor = () => {
     const randomR = Math.floor(Math.random() * 256);
     const randomG = Math.floor(Math.random() * 256);   
@@ -27,7 +26,6 @@ const getRandomColor = () => {
     return `rgb(${randomR}, ${randomG}, ${randomB})`;
 }
 
-//TODO: create functions to group inputs into distinct country objects and scale values
 //returns grouped data of distinct countries
 const groupData = data => {
     return Object.values(
