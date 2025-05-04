@@ -11,14 +11,6 @@ const startYearInput = document.getElementById("start-year");
 const endYearInput = document.getElementById("end-year");
 const submitButton = document.getElementById("submit-button");
 
-const indicators = {
-    "GDP (current US$)": "NY.GDP.MKTP.CD",
-    "GDP growth (annual %)": "NY.GDP.MKTP.KD.ZG",
-    "Inflation, consumer prices (annual %)" : "FP.CPI.TOTL.ZG",
-    "Unemployment, total (% of total labor force)": "SL.UEM.TOTL.ZS",
-    "General government gross debt, total (% of GDP)": "GC.DOD.TOTL.GD.ZS",
-}
-
 const renderCountriesInput = () => {
     fetch("../data/countries.json")
     .then(response => response.json())
@@ -30,7 +22,7 @@ const renderCountriesInput = () => {
             countriesInput.appendChild(option);
         });
     
-        const countriesChoices = new Choices(countriesInput, {
+        new Choices(countriesInput, {
             removeItemButton: true,
             searchEnabled: true,
         });
@@ -41,12 +33,31 @@ const renderCountriesInput = () => {
     })
 }
 
-renderCountriesInput();
+const renderIndicatorsInput = () => {
+    fetch("../data/indicators.json")
+    .then(response => response.json())
+    .then(data => { 
+        data.forEach(indicator => {
+            const option = document.createElement("option");
+            option.value = indicator.code;
+            option.innerText = indicator.name;
+            option.setAttribute("name", indicator.name);
+            indicatorsInput.appendChild(option);
+        });
+    
+        new Choices(indicatorsInput, {
+            removeItemButton: true,
+            searchEnabled: true,
+        });
+    })
+    .catch(error => {
+        console.error("Error fetching indicator data:", error);
+        alert("An error occurred while loading indicators. Please try again later.");
+    })
+}
 
-const indicatorChoices = new Choices(indicatorsInput, {
-    removeItemButton: true,
-    searchEnabled: true,
-});
+renderCountriesInput();
+renderIndicatorsInput();
 
 submitButton.onclick = () => {
     const visualizationInput = document.querySelector("input[name=\"visualization-type\"]:checked");
@@ -57,14 +68,19 @@ submitButton.onclick = () => {
         .filter(option => option.selected)
         .map(option => option.value)
         .filter(value => value !== "");
-    const indicator = indicatorsInput.value;
+    const indicatorCode = indicatorsInput.value;
+    const selectedOption = 
+        [...indicatorsInput.options]
+        .find(opt => opt.value === indicatorCode);
+    const indicatorName = selectedOption.getAttribute("name");
     const startYear = startYearInput.value;
     const endYear = endYearInput.value;
     const visualizationType = visualizationInput.value;
 
     //validate inputs
     if(countries.length === 0 || 
-        indicator === "" || 
+        indicatorCode === "" || 
+        indicatorName === "" ||
         startYear === "" || 
         endYear === "" ||
         visualizationType === "") {
@@ -79,7 +95,7 @@ submitButton.onclick = () => {
     //call api with data 
     const data = {
         countries: countries,
-        indicator: indicators[indicator] || indicator, // Use the indicator from the map or the input value
+        indicator: indicatorCode, // Use the indicator from the map or the input value
         startYear: startYear,
         endYear: endYear
     };
@@ -93,7 +109,7 @@ submitButton.onclick = () => {
         console.log("Grouped Data:", groupedData);
         const scaleAttributes = getScaleAttributes(groupedData);
         //render the chart with cleanedData
-        renderChart(canvas, groupedData, visualizationType, indicator, scaleAttributes);
+        renderChart(canvas, groupedData, visualizationType, indicatorName, scaleAttributes);
     })
     .catch(error => {
         console.error("Error fetching chart data:", error);
