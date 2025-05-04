@@ -1,43 +1,48 @@
 /*TODO: style header, sidebar, display-area*/
 body {
-    background-color: #1d1d1d;
+    background-color: #e6e6e6;
     color: white;
+    padding-inline: 2rem;
+    font-family: Arial;
 }
 
 header {
     text-align: center;
-    background-color: #ccc;
+    background-color: #ffffff;
     width: 95vw;
     color: black;
-    font-family: Arial;
     justify-self: center;
     text-transform: uppercase;
+    width: 50vw;
+    border-radius: 8px;
 }
 
 main {
     display: flex;
     justify-content: space-evenly;
-    height: 100vh;
-    font-family: Arial;
+    height: 90vh;
 }
 
 main #sidebar {
     align-self: flex-start;
-    transform: scale(1.05);
-    margin-top: 30px;
     padding: 15px;
-    border: 1px solid white;
+    background-color: #ffffff;
+    color: black;
+    border-radius: 8px;
 }
 
 main #display-area {
-    /*background-color: blue;*/
     display: flex;
     justify-content: center;
-    align-items: center;
-    max-height: 90%;
-    width: 1000px;
+    max-height: 100%;
+    width: 70rem;
     background-color: white;
-    border: 5px solid black;
+    border-radius: 8px;
+}
+
+#display-area canvas {
+    max-width: 90%;
+    align-self: center;
 }
 
 p {
@@ -50,17 +55,14 @@ form {
     flex-direction: column;
     justify-content: space-between;
     gap: 20px;
-    /*background-color: gray;*/
 }
 
 fieldset {
     display: grid;
     gap: 5px;
     border-radius: 8px;
-}
-
-label {
-    vertical-align: middle;
+    border: none;
+    /*border: #2a2a2a; */
 }
 
 input[type="radio"] {
@@ -79,12 +81,9 @@ form button {
     height: 35px;
     width: 100px;
     border-radius: 8px;
-    border: 3px solid black;
+    border: 1px solid black;
     text-transform: uppercase;
 }
-
-
-
 
 /* Override the selected item background and text color */
 .choices__list--multiple .choices__item {
@@ -95,12 +94,12 @@ form button {
 
 .choices {
     border-radius: 8px;
-    border: 1px solid black;
+    border: 1px solid rgb(0, 0, 0);
 }
 
 /* Style for each selected item in the input */
 .choices__item.choices__item--selectable {
-    background-color: #2e2e2e; /* your custom color */
+    background-color: #2a86c4; /* your custom color */
     color: black;              /* text color */
     border-radius: 4px;
     padding: 4px 8px;

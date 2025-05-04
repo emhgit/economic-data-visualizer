@@ -42,6 +42,11 @@ const renderCountriesInput = () => {
 }
 
 renderCountriesInput();
+/*const indicatorChoices = new Choices(countriesInput, {
+    removeItemButton: true,
+    searchEnabled: true,
+});
+*/
 
 submitButton.onclick = () => {
     const visualizationInput = document.querySelector("input[name=\"visualization-type\"]:checked");
