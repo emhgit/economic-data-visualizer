@@ -85,16 +85,17 @@ form button {
     text-transform: uppercase;
 }
 
+
+.choices {
+    border-radius: 8px;
+    border: 1px solid rgb(0, 0, 0);
+}
+
 /* Override the selected item background and text color */
 .choices__list--multiple .choices__item {
     background-color: #ccc !important; /* grey background */
     color: #000 !important;            /* black text (optional) */
     border: none !important;
-}
-
-.choices {
-    border-radius: 8px;
-    border: 1px solid rgb(0, 0, 0);
 }
 
 /* Style for each selected item in the input */
@@ -111,4 +112,12 @@ form button {
 .choices__item.choices__item--selectable .choices__button {
   color: #ccc;
   opacity: 0.8;
+}
+
+.choices__list--single .choices__item {
+    background-color: #ccc !important; /* grey background */
+    color: #000 !important;            /* black text (optional) */
+    border: none !important;
+    width: 80% !important;
+    border-radius: 20px;
 }
