@@ -11,14 +11,6 @@ const startYearInput = document.getElementById("start-year");
 const endYearInput = document.getElementById("end-year");
 const submitButton = document.getElementById("submit-button");
 
-const indicators = {
-    "GDP (current US$)": "NY.GDP.MKTP.CD",
-    "GDP growth (annual %)": "NY.GDP.MKTP.KD.ZG",
-    "Inflation, consumer prices (annual %)" : "FP.CPI.TOTL.ZG",
-    "Unemployment, total (% of total labor force)": "SL.UEM.TOTL.ZS",
-    "General government gross debt, total (% of GDP)": "GC.DOD.TOTL.GD.ZS",
-}
-
 const renderCountriesInput = () => {
     fetch("../data/countries.json")
     .then(response => response.json())
@@ -42,11 +34,11 @@ const renderCountriesInput = () => {
 }
 
 renderCountriesInput();
-/*const indicatorChoices = new Choices(countriesInput, {
+
+const indicatorChoices = new Choices(indicatorsInput, {
     removeItemButton: true,
     searchEnabled: true,
 });
-*/
 
 submitButton.onclick = () => {
     const visualizationInput = document.querySelector("input[name=\"visualization-type\"]:checked");
@@ -79,7 +71,7 @@ submitButton.onclick = () => {
     //call api with data 
     const data = {
         countries: countries,
-        indicator: indicators[indicator] || indicator, // Use the indicator from the map or the input value
+        indicator: indicator, // Use the indicator from the map or the input value
         startYear: startYear,
         endYear: endYear
     };

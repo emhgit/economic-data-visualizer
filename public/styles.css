@@ -99,7 +99,7 @@ form button {
 
 /* Style for each selected item in the input */
 .choices__item.choices__item--selectable {
-    background-color: #2a86c4; /* your custom color */
+    background-color: #ccc; /* your custom color */
     color: black;              /* text color */
     border-radius: 4px;
     padding: 4px 8px;
