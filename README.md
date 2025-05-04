@@ -16,8 +16,6 @@
 ![Bar Graph Screenshot](image.png)
 ![Line Graph Screenshot](image-1.png)
 
-> Replace the image URL above with a valid path or upload a screenshot to your repo.
-
 ## Technologies Used
 
 - HTML, CSS, JavaScript
@@ -33,11 +31,8 @@
    git clone https://github.com/emhgit/economic-data-visualizer.git
    cd economic-data-visualizer
 2. Install dependencies (if using npm):
-
-bash
-Copy
-Edit
-npm install
+    ```bash
+    npm install
 3. Open index.html in your browser to use the application.
 
 ## Usage
