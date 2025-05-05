@@ -1,3 +1,5 @@
+// Uses Chart.js (MIT License)
+// https://github.com/chartjs/Chart.js
 import { Chart } from '../node_modules/chart.js/auto';
 import { getRandomColor } from './utils.js';
 

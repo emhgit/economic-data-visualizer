@@ -1,3 +1,5 @@
+// Uses Choices-js (MIT License)
+// https://github.com/Choices-js/Choices
 import { fetchData } from "./api.js";
 import { cleanData, groupData, getScaleAttributes } from "./utils.js"; 
 import { renderChart } from "./charts.js"; 
