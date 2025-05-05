@@ -45,3 +45,7 @@ Set the start and end year.
 Select your preferred chart type.
 
 Click "Submit" to generate the visualization.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for details.
