@@ -49,3 +49,10 @@ Click "Submit" to generate the visualization.
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](./LICENSE) file for details.
+
+## Third-Party Libraries
+
+This project uses the following libraries:
+
+- Chart.js (MIT License) - https://github.com/chartjs/Chart.js
+- Choices.js (MIT License) - https://github.com/Choices-js/Choices
