@@ -1,122 +1,226 @@
+/* CSS RESET & BASE */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 body {
-    background-color: #e6e6e6;
-    color: white;
-    padding-inline: 2rem;
-    font-family: Arial;
+  background-color: #f7f8fa;
+  color: #222;
+  padding-inline: 0;
+  font-family: "Segoe UI", Arial, sans-serif;
+  min-height: 100vh;
 }
 
 header {
-    text-align: center;
-    background-color: #ffffff;
-    width: 95vw;
-    color: black;
-    justify-self: center;
-    text-transform: uppercase;
-    width: 50vw;
-    border-radius: 8px;
+  text-align: center;
+  background-color: #fff;
+  color: #222;
+  text-transform: uppercase;
+  border-radius: 16px;
+  margin: 2rem auto 1.5rem auto;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.07);
+  padding: 1.5rem 1rem;
+  width: 95vw;
+  max-width: 700px;
+}
+
+header h1 {
+  font-size: 2.2rem;
+  letter-spacing: 2px;
+  font-weight: 700;
 }
 
 main {
-    display: flex;
-    justify-content: space-evenly;
-    height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2rem;
+  height: auto;
+  padding: 0 1rem 2rem 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-main #sidebar {
-    align-self: flex-start;
-    padding: 15px;
-    background-color: #ffffff;
-    color: black;
-    border-radius: 8px;
+#sidebar {
+  flex: 1 1 320px;
+  max-width: 350px;
+  min-width: 260px;
+  background-color: #fff;
+  color: #222;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.09);
+  padding: 2rem 1.5rem 1.5rem 1.5rem;
+  margin-bottom: 2rem;
 }
 
-main #display-area {
-    display: flex;
-    justify-content: center;
-    max-height: 100%;
-    width: 70rem;
-    background-color: white;
-    border-radius: 8px;
+#display-area {
+  flex: 3 1 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.09);
+  padding: 2rem 1.5rem;
+  min-width: 0;
+  width: 100%;
+  max-width: 900px;
+  min-height: 400px;
 }
 
 #display-area canvas {
-    max-width: 90%;
-    align-self: center;
-}
-
-p {
-    font-weight: bold;
-    text-transform: uppercase;
+  max-width: 100%;
+  height: auto;
+  align-self: center;
+  background: #f7f8fa;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
 form {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
 fieldset {
-    display: grid;
-    gap: 5px;
-    border-radius: 8px;
-    border: none;
-    /*border: #2a2a2a; */
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  border-radius: 12px;
+  border: none;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem 0 0.5rem 0;
+}
+
+p,
+label {
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  color: #3a3a3a;
+}
+
+input,
+select,
+.choices {
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  padding: 0.5rem 0.75rem;
+  font-size: 1rem;
+  background: #f7f8fa;
+  color: #222;
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+
+input:focus,
+select:focus,
+.choices:focus-within {
+  border: 1.5px solid #7ab6f9;
+  outline: none;
+  box-shadow: 0 0 0 2px #e3f0fc;
 }
 
 input[type="radio"] {
-    vertical-align: middle;
-    margin: 6px;
-}
-
-input {
-    border-radius: 8px;
-    border: 1px solid black;
+  margin: 0 8px 0 0;
+  accent-color: #7ab6f9;
+  width: 1.1em;
+  height: 1.1em;
 }
 
 form button {
-    align-self: center;
-    font-weight: bold;
-    height: 35px;
-    width: 100px;
-    border-radius: 8px;
-    border: 1px solid black;
-    text-transform: uppercase;
+  align-self: center;
+  font-weight: bold;
+  height: 40px;
+  width: 120px;
+  border-radius: 8px;
+  border: none;
+  background: linear-gradient(90deg, #7ab6f9 0%, #aee1fa 100%);
+  color: #222;
+  text-transform: uppercase;
+  font-size: 1.1rem;
+  box-shadow: 0 2px 8px rgba(122, 182, 249, 0.13);
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s;
 }
 
+form button:hover,
+form button:focus {
+  background: linear-gradient(90deg, #5fa6e6 0%, #7ab6f9 100%);
+  box-shadow: 0 4px 16px rgba(122, 182, 249, 0.18);
+}
 
 .choices {
-    border-radius: 8px;
-    border: 1px solid rgb(0, 0, 0);
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  background: #f7f8fa;
 }
 
-/* Override the selected item background and text color */
-.choices__list--multiple .choices__item {
-    background-color: #ccc !important; /* grey background */
-    color: #000 !important;            /* black text (optional) */
-    border: none !important;
+.choices__list--multiple .choices__item,
+.choices__list--single .choices__item {
+  background-color: #e3f0fc !important;
+  color: #222 !important;
+  border: none !important;
+  border-radius: 6px !important;
+  font-weight: 500;
+  margin: 2px 4px;
+  padding: 4px 8px;
 }
 
-/* Style for each selected item in the input */
-.choices__item.choices__item--selectable {
-    background-color: #ccc; /* your custom color */
-    color: black;              /* text color */
-    border-radius: 4px;
-    padding: 4px 8px;
-    margin: 2px 4px;
-    font-weight: 500;
-  }
-
-/* Remove button (the “x” on selected item) */
 .choices__item.choices__item--selectable .choices__button {
-  color: #ccc;
+  color: #7ab6f9;
   opacity: 0.8;
 }
 
-.choices__list--single .choices__item {
-    background-color: #ccc !important; /* grey background */
-    color: #000 !important;            /* black text (optional) */
-    border: none !important;
-    width: 80% !important;
-    border-radius: 20px;
+/* Responsive Design */
+@media (max-width: 900px) {
+  main {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1.5rem;
+  }
+  #sidebar,
+  #display-area {
+    max-width: 100%;
+    min-width: 0;
+    margin: 0 auto 1.5rem auto;
+  }
+  #display-area {
+    min-height: 300px;
+    padding: 1rem 0.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  header {
+    padding: 1rem 0.5rem;
+    font-size: 1.2rem;
+  }
+  main {
+    padding: 0 0.25rem 1rem 0.25rem;
+  }
+  #sidebar,
+  #display-area {
+    padding: 1rem 0.5rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+  }
+  form button {
+    width: 100%;
+    font-size: 1rem;
+  }
+  input,
+  select,
+  .choices {
+    font-size: 0.95rem;
+    padding: 0.4rem 0.5rem;
+  }
+  header h1 {
+    font-size: 1.3rem;
+  }
 }
