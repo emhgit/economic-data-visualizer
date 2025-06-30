@@ -13,8 +13,9 @@
 
 ## Demo
 
-![Bar Graph Screenshot](image.png)
-![Line Graph Screenshot](image-1.png)
+![Bar Graph Screenshot](public/bar-graph.png)
+![Line Graph Screenshot](public/line-graph.png)
+![Scatter Plot Screenshot](public/scatter-plot.png)
 
 ## Technologies Used
 
@@ -22,7 +23,7 @@
 - Chart.js
 - Choices.js
 - World Bank API
-- Node.js 
+- Node.js
 
 ## Installation
 
@@ -30,12 +31,15 @@
    ```bash
    git clone https://github.com/emhgit/economic-data-visualizer.git
    cd economic-data-visualizer
+   ```
 2. Install dependencies (if using npm):
-    ```bash
-    npm install
+   ```bash
+   npm install
+   ```
 3. Open index.html in your browser to use the application.
 
 ## Usage
+
 Select a country from the dropdown.
 
 Choose an economic indicator (e.g., GDP).
