@@ -53,6 +53,8 @@ main {
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.09);
   padding: 2rem 1.5rem 1.5rem 1.5rem;
   margin-bottom: 2rem;
+  max-height: 80vh;
+  overflow-y: auto;
 }
 
 #display-area {
@@ -204,6 +206,7 @@ form button:focus {
   main {
     padding: 0 0.25rem 1rem 0.25rem;
   }
+
   #sidebar,
   #display-area {
     padding: 1rem 0.5rem;
