@@ -4,7 +4,9 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "vite"
+    "dev": "vite",
+    "deploy": "./scripts/deploy.sh",
+    "deploy:win": "powershell -File .\\scripts\\deploy.ps1"
   },
   "repository": {
     "type": "git",
