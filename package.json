@@ -5,8 +5,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "vite",
-    "deploy": "./scripts/deploy.sh",
-    "deploy:win": "powershell -File .\\scripts\\deploy.ps1"
+    "deploy": "node ./scripts/deploy.js"
   },
   "repository": {
     "type": "git",
@@ -22,6 +21,7 @@
   "description": "",
   "dependencies": {
     "chart.js": "^4.4.9",
+    "child_process": "^1.0.2",
     "choices.js": "^11.1.0"
   },
   "devDependencies": {
