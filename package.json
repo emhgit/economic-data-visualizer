@@ -26,7 +26,8 @@
   "description": "",
   "dependencies": {
     "chart.js": "^4.4.9",
-    "choices.js": "^11.1.0"
+    "choices.js": "^11.1.0",
+    "dotenv": "^17.2.1"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20240311.0",
