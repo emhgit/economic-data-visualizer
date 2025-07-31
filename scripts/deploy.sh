@@ -3,10 +3,15 @@
 
 echo "Starting deployment to Cloudflare R2..."
 
+if [ -z "${R2_BUCKET_NAME}" ]; then
+  echo "Error: R2_BUCKET_NAME environment variable is not set"
+  exit 1
+fi
+
 # Upload all files to R2
 echo "Uploading files to R2 bucket..."
 
-wrangler r2 object put economic-data-visualizer/index.html --file=./index.html
+wrangler r2 object put ${R2_BUCKET_NAME}/index.html --file=./index.html
 
 # Upload directories
 upload_dir() {
@@ -15,7 +20,7 @@ upload_dir() {
   for file in $(find $dir -type f); do
     # Remove leading ./
     file=${file#./}
-    wrangler r2 object put "economic-data-visualizer/$prefix${file#$dir/}" --file="./$file"
+    wrangler r2 object put "${R2_BUCKET_NAME}/$prefix${file#$dir/}" --file="./$file"
   done
 }
 
