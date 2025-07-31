@@ -22,7 +22,8 @@
   "dependencies": {
     "chart.js": "^4.4.9",
     "child_process": "^1.0.2",
-    "choices.js": "^11.1.0"
+    "choices.js": "^11.1.0",
+    "dotenv": "^17.2.1"
   },
   "devDependencies": {
     "vite": "^6.3.4"

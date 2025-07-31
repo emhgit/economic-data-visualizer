@@ -5,6 +5,7 @@ const fs = require('fs');
 
 console.log("Starting deployment to Cloudflare R2...");
 
+require('dotenv').config();
 const R2_BUCKET_NAME = process.env.R2_BUCKET_NAME;
 
 if (!R2_BUCKET_NAME) {
