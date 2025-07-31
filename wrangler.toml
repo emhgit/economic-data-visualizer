@@ -12,9 +12,9 @@ bucket_name = "economic-data-visualizer"
 R2_BUCKET_NAME = "economic-data-visualizer"
 
 # Enable modules (required for ES modules)
-[build.upload]
-format = "modules"
-main = "worker.js"
+# [build.upload]
+# format = "modules"
+# main = "worker.js"
 
 # For local development
 [dev]

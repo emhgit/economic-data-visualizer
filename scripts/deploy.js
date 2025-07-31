@@ -1,3 +1,4 @@
+// deploy.js
 // scripts/deploy.js
 const { execSync } = require('child_process');
 const path = require('path');
@@ -38,7 +39,8 @@ function getAllFiles(dirPath, arrayOfFiles = []) {
 
 // Upload files to R2
 function uploadToR2(localPath, r2Path) {
-  const command = `wrangler r2 object put "${R2_BUCKET_NAME}/${r2Path}" --file="${localPath}"`;
+  // *** MODIFICATION HERE: Add --remote flag ***
+  const command = `wrangler r2 object put "${R2_BUCKET_NAME}/${r2Path}" --file="${localPath}" --remote`;
   runCommand(command);
 }
 
@@ -52,16 +54,16 @@ async function deploy() {
   }
 
   console.log("Uploading files to R2 bucket from dist directory...");
-  
+
   // Get all files in dist directory
   const files = getAllFiles(distDir);
-  
+
   // Upload each file to R2
   for (const file of files) {
     // Calculate the R2 path by removing the dist directory from the full path
     const relativePath = path.relative(distDir, file);
     const r2Path = relativePath.replace(/\\/g, '/'); // Convert Windows paths to forward slashes
-    
+
     console.log(`Uploading ${file} to ${r2Path}`);
     uploadToR2(file, r2Path);
   }
@@ -69,10 +71,10 @@ async function deploy() {
   console.log("Files uploaded to R2 bucket successfully!");
 
   // Deploy the worker
-  console.log("Deploying Cloudflare Worker...");
-  runCommand("wrangler deploy");
+  // console.log("Deploying Cloudflare Worker...");
+  // runCommand("wrangler deploy");
 
-  console.log("Deployment complete! Your app should be live shortly.");
+  // console.log("Deployment complete! Your app should be live shortly.");
 }
 
 // Run the deployment
