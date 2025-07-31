@@ -6,12 +6,7 @@ const fs = require('fs');
 console.log("Starting deployment to Cloudflare R2...");
 
 require('dotenv').config();
-const R2_BUCKET_NAME = process.env.R2_BUCKET_NAME;
-
-if (!R2_BUCKET_NAME) {
-  console.error("Error: R2_BUCKET_NAME environment variable is not set");
-  process.exit(1);
-}
+const R2_BUCKET_NAME = process.env.R2_BUCKET_NAME || 'economic-data-visualizer';
 
 // Function to run shell commands
 function runCommand(command) {
@@ -25,45 +20,63 @@ function runCommand(command) {
   }
 }
 
-// Upload all files to R2
-console.log("Uploading files to R2 bucket...");
-
-runCommand(`wrangler r2 object put ${R2_BUCKET_NAME}/index.html --file=./index.html`);
-
-// Upload directories
-function uploadDir(dir, prefix) {
-  console.log(`Uploading directory: ${dir}`);
-  const files = getAllFiles(dir);
-
-  for (const file of files) {
-    const relativePath = path.relative(dir, file);
-    const r2Path = `${prefix}${relativePath.replace(/\\/g, '/')}`; // Ensure forward slashes for R2
-    runCommand(`wrangler r2 object put "${R2_BUCKET_NAME}/${r2Path}" --file="./${file}"`);
-  }
-}
-
 // Helper function to get all files in a directory recursively
 function getAllFiles(dirPath, arrayOfFiles = []) {
   const files = fs.readdirSync(dirPath);
 
   files.forEach(file => {
-    if (fs.statSync(dirPath + "/" + file).isDirectory()) {
-      arrayOfFiles = getAllFiles(dirPath + "/" + file, arrayOfFiles);
+    const fullPath = path.join(dirPath, file);
+    if (fs.statSync(fullPath).isDirectory()) {
+      getAllFiles(fullPath, arrayOfFiles);
     } else {
-      arrayOfFiles.push(path.join(dirPath, "/", file));
+      arrayOfFiles.push(fullPath);
     }
   });
 
   return arrayOfFiles;
 }
 
+// Upload files to R2
+function uploadToR2(localPath, r2Path) {
+  const command = `wrangler r2 object put "${R2_BUCKET_NAME}/${r2Path}" --file="${localPath}"`;
+  runCommand(command);
+}
 
-uploadDir("js", "js/");
-uploadDir("data", "data/");
-uploadDir("public", "public/");
+// Main deployment function
+async function deploy() {
+  // Check if dist directory exists
+  const distDir = path.join(process.cwd(), 'dist');
+  if (!fs.existsSync(distDir)) {
+    console.error('Error: dist directory not found. Run `npm run build` first.');
+    process.exit(1);
+  }
 
-// Deploy worker
-console.log("Deploying Cloudflare Worker...");
-runCommand("wrangler deploy");
+  console.log("Uploading files to R2 bucket from dist directory...");
+  
+  // Get all files in dist directory
+  const files = getAllFiles(distDir);
+  
+  // Upload each file to R2
+  for (const file of files) {
+    // Calculate the R2 path by removing the dist directory from the full path
+    const relativePath = path.relative(distDir, file);
+    const r2Path = relativePath.replace(/\\/g, '/'); // Convert Windows paths to forward slashes
+    
+    console.log(`Uploading ${file} to ${r2Path}`);
+    uploadToR2(file, r2Path);
+  }
 
-console.log("Deployment complete! Your app should be live shortly.");
+  console.log("Files uploaded to R2 bucket successfully!");
+
+  // Deploy the worker
+  console.log("Deploying Cloudflare Worker...");
+  runCommand("wrangler deploy");
+
+  console.log("Deployment complete! Your app should be live shortly.");
+}
+
+// Run the deployment
+deploy().catch(error => {
+  console.error('Deployment failed:', error);
+  process.exit(1);
+});
