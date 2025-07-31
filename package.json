@@ -5,6 +5,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "vite",
+    "clean": "rm -rf dist .wrangler",
     "build": "vite build",
     "preview": "vite preview",
     "deploy:files": "node ./scripts/deploy.js",
