@@ -1,5 +1,3 @@
-// deploy.js
-// scripts/deploy.js
 const { execSync } = require('child_process');
 const path = require('path');
 const fs = require('fs');
@@ -53,28 +51,41 @@ async function deploy() {
     process.exit(1);
   }
 
-  console.log("Uploading files to R2 bucket from dist directory...");
+  // Check if data directory exists
+  const dataDir = path.join(process.cwd(), 'data');
+  const dataDirExists = fs.existsSync(dataDir);
 
-  // Get all files in dist directory
-  const files = getAllFiles(distDir);
+  console.log("Uploading files to R2 bucket...");
 
-  // Upload each file to R2
-  for (const file of files) {
-    // Calculate the R2 path by removing the dist directory from the full path
+  // Upload dist files
+  console.log("Uploading dist files...");
+  const distFiles = getAllFiles(distDir);
+  for (const file of distFiles) {
     const relativePath = path.relative(distDir, file);
-    const r2Path = relativePath.replace(/\\/g, '/'); // Convert Windows paths to forward slashes
-
+    const r2Path = relativePath.replace(/\\/g, '/');
     console.log(`Uploading ${file} to ${r2Path}`);
     uploadToR2(file, r2Path);
+  }
+
+  // Upload data files if data directory exists
+  if (dataDirExists) {
+    console.log("\nUploading data files...");
+    const dataFiles = getAllFiles(dataDir);
+    for (const file of dataFiles) {
+      const relativePath = path.relative(process.cwd(), file);
+      const r2Path = relativePath.replace(/\\/g, '/');
+      console.log(`Uploading ${file} to ${r2Path}`);
+      uploadToR2(file, r2Path);
+    }
   }
 
   console.log("Files uploaded to R2 bucket successfully!");
 
   // Deploy the worker
-  // console.log("Deploying Cloudflare Worker...");
-  // runCommand("wrangler deploy");
+  console.log("Deploying Cloudflare Worker...");
+  runCommand("wrangler deploy");
 
-  // console.log("Deployment complete! Your app should be live shortly.");
+  console.log("Deployment complete! Your app should be live shortly.");
 }
 
 // Run the deployment
